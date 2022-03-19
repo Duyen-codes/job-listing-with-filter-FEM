@@ -37,8 +37,15 @@ header {
 /* MAIN  */
 main {
   background: var(--light-grayish-cyan-background);
-  padding: 0 2rem;
-  border: 1px solid red;
+  border: 2px solid red;
+  padding-inline: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-container {
+  max-width: 1200px;
   position: relative;
 }
 
@@ -49,10 +56,11 @@ main {
   border-radius: 1rem;
   background: white;
   padding: 2rem;
-  position: absolute;
+  position: fixed;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 90%;
+  max-width: 1200px;
 }
 
 .filter-button {
@@ -90,6 +98,18 @@ main {
   border: none;
   background: transparent;
   font-weight: 700;
+}
+
+/* CARDS  */
+.cards {
+  margin-top: 10rem;
+  max-width: 1200px;
+  margin-inline: auto;
+}
+
+.card {
+  background-color: white;
+  border: 1px solid green;
 }
 /* Desktop  */
 
