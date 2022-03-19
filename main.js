@@ -3,6 +3,9 @@ const cards = document.querySelector(".cards");
 
 const clearButton = document.querySelector(".clear-button");
 
+const filterContainer = document.querySelector(".filter-container");
+console.log(filterContainer);
+
 // Render card
 const renderCard = function (array) {
   array.forEach((jobAd) => {
@@ -86,4 +89,5 @@ clearButton.addEventListener("click", function () {
 // Page first loads
 window.addEventListener("DOMContentLoaded", function () {
   fetchJobs();
+  filterContainer.style.display = "none";
 });
