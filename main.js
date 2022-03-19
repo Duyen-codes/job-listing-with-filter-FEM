@@ -1,15 +1,18 @@
 // Variables
 const cards = document.querySelector(".cards");
 
+const clearButton = document.querySelector(".clear-btn");
+
+// Render card
 const renderCard = function (jobAd) {
-  let newButton;
+  let newButton = "";
   if (jobAd.new == true) {
-    newButton = `<button class="new-btn">New</button>`;
+    newButton += `<button class="new-btn">New</button>`;
   } else {
     newButton = "";
   }
 
-  let featureBtn;
+  let featureBtn = "";
   if (jobAd.featured == true) {
     featureBtn += `<button class="feature-btn">feature</button>`;
   } else {
