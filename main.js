@@ -11,10 +11,21 @@ const renderCard = function (jobAd) {
 
   let featureBtn;
   if (jobAd.featured == true) {
-    featureBtn = `<button class="feature-btn">feature</button>`;
+    featureBtn += `<button class="feature-btn">feature</button>`;
   } else {
     featureBtn = "";
   }
+
+  let languages = "";
+  jobAd.languages.forEach((lang) => {
+    languages += `<button class="language">${lang}</button>`;
+  });
+
+  let tools = "";
+  jobAd.tools.forEach((tool) => {
+    tools += `<button class="tool">${tool}</button>`;
+  });
+
   let html = `
   <div class="card">
            
@@ -24,7 +35,6 @@ const renderCard = function (jobAd) {
     <div class="item-start-content">
       <span class="company">${jobAd.company}</span>
      ${newButton}
-      
      ${featureBtn}
       <h3 class="position">${jobAd.position}</h3>
       <span class="postedAt">${jobAd.postedAt}</span> .
@@ -39,9 +49,8 @@ const renderCard = function (jobAd) {
  
     <button class="level">${jobAd.level}</button>
    
-    <button>HTML</button> <button>CSS</button>
-    <button>JavaScript</button>
- 
+    ${languages}
+    ${tools}
   </div>
 </div>
   `;
