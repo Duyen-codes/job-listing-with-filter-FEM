@@ -36,7 +36,7 @@ body {
 /* HEADER  */
 header {
   height: 150px;
-  background: url("/images/bg-header-mobile.svg"),
+  background: url("images/bg-header-mobile.svg"),
     var(--desaturated-dark-cyan) no-repeat;
 }
 
@@ -201,7 +201,7 @@ main {
 
 @media screen and (min-width: 377px) {
   header {
-    background: url("/images/bg-header-desktop.svg"),
+    background: url("images/bg-header-desktop.svg"),
       var(--desaturated-dark-cyan) repeat-x;
   }
 }
