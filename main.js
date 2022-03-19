@@ -79,8 +79,11 @@ async function fetchJobs() {
   renderCard(jobsArray);
 }
 
-fetchJobs();
-
 clearButton.addEventListener("click", function () {
   renderCard(jobsArray);
+});
+
+// Page first loads
+window.addEventListener("DOMContentLoaded", function () {
+  fetchJobs();
 });
