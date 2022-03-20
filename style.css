@@ -218,6 +218,7 @@ main {
     justify-content: space-between;
     align-items: center;
     /* flex-wrap: wrap; */
+    padding-inline: 5rem;
   }
 
   .item-start {
