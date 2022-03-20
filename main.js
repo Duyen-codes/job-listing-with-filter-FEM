@@ -25,12 +25,12 @@ const renderCard = function (array) {
 
     let languages = "";
     jobAd.languages.forEach((lang) => {
-      languages += `<button class="language">${lang}</button>`;
+      languages += `<button class="tag language">${lang}</button>`;
     });
 
     let tools = "";
     jobAd.tools.forEach((tool) => {
-      tools += `<button class="tool">${tool}</button>`;
+      tools += `<button class="tag tool">${tool}</button>`;
     });
 
     let html = `
@@ -50,11 +50,11 @@ const renderCard = function (array) {
           </div>
         </div>
       
-        <div class="item-end">
+        <div class="tags item-end">
         
-          <button class="role">${jobAd.role}</button>
+          <button class="tag role">${jobAd.role}</button>
        
-          <button class="level">${jobAd.level}</button>
+          <button class="tag level">${jobAd.level}</button>
          
           ${languages}
           ${tools}
