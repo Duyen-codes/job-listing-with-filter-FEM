@@ -75,12 +75,22 @@ const renderCard = function (array) {
 const tagOnclickHandler = function (e) {
   if (!filterTerms.has(e.target.textContent)) {
     filterTerms.add(e.target.textContent);
-    console.log("tagOnclickHandler: ", filterTerms);
   }
-  return filterTerms;
 };
 
-const filterJobs = (jobsArray, filterTerms) => {};
+const filterJobs = (jobsArray, filterTerms) => {
+  jobsArray.filter((job) => {
+    for (const term of filterTerms) {
+      const match =
+        job.role === term ||
+        job.level === term ||
+        job.languages.includes(term) ||
+        job.tools.includes(term);
+      if (!match) return false;
+    }
+    return true;
+  });
+};
 // Make filter button
 
 const makeFilterButton = function (e) {
