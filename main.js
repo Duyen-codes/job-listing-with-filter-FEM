@@ -9,6 +9,7 @@ const filterOptions = document.querySelector(".filter-options");
 
 let tagsArray = [];
 let filters = [];
+
 // Render card
 const renderCard = function (array) {
   array.forEach((jobAd) => {
@@ -66,26 +67,38 @@ const renderCard = function (array) {
 
   let tags = document.querySelectorAll(".tag");
   tags.forEach((tag) => {
-    tag.addEventListener("click", function () {
-      tagsArray.push(tag.textContent);
-      let button = document.createElement("button");
-      button.classList.add("filter-button");
-      let span = document.createElement("span");
-      span.textContent = tag.textContent;
-      let img = document.createElement("img");
-      img.setAttribute("src", "images/icon-remove.svg");
-      img.setAttribute("alt", "remove icon");
-      button.appendChild(span);
-      button.appendChild(img);
-      filterOptions.appendChild(button);
-      filterContainer.style.display = "flex";
-    });
-    return tagsArray;
+    tag.addEventListener("click", makeFilterButton);
   });
 };
 
-const renderFilterButton = function (tag) {};
+const makeFilterButton = function (e) {
+  let button = document.createElement("button");
+  button.classList.add("filter-button");
+  let span = document.createElement("span");
+  span.textContent = e.target.textContent;
+  let img = document.createElement("img");
+  img.setAttribute("src", "images/icon-remove.svg");
+  img.setAttribute("alt", "remove icon");
+  button.appendChild(span);
+  button.appendChild(img);
+  filterOptions.appendChild(button);
+  filterContainer.style.display = "flex";
+};
 
+// function () {
+//     tagsArray.push(tag.textContent);
+//     let button = document.createElement("button");
+//     button.classList.add("filter-button");
+//     let span = document.createElement("span");
+//     span.textContent = tag.textContent;
+//     let img = document.createElement("img");
+//     img.setAttribute("src", "images/icon-remove.svg");
+//     img.setAttribute("alt", "remove icon");
+//     button.appendChild(span);
+//     button.appendChild(img);
+//     filterOptions.appendChild(button);
+//     filterContainer.style.display = "flex";
+//   }
 // Fetch Jobs
 
 let jobsArray = [];
@@ -98,12 +111,13 @@ async function fetchJobs() {
 }
 
 // remove filter container when clear button clicks
-
-clearButton.addEventListener("click", function () {
-  filterContainer.innerHTML = "";
+const removeAllFilters = function () {
+  filterOptions.innerHTML = "";
   filterContainer.style.display = "none";
   renderCard(jobsArray);
-});
+};
+
+clearButton.addEventListener("click", removeAllFilters);
 
 // Page first loads
 window.addEventListener("DOMContentLoaded", function () {
