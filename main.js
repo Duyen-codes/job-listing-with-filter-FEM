@@ -84,7 +84,6 @@ async function fetchJobs() {
 
 clearButton.addEventListener("click", function () {
   filterContainer.innerHTML = "";
-  filterContainer.style.display = "none";
   renderCard(jobsArray);
 });
 
