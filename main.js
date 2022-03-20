@@ -4,8 +4,11 @@ const cards = document.querySelector(".cards");
 const clearButton = document.querySelector(".clear-button");
 
 const filterContainer = document.querySelector(".filter-container");
-console.log(filterContainer);
 
+const filterOptions = document.querySelector(".filter-options");
+
+let tagsArray = [];
+let filters = [];
 // Render card
 const renderCard = function (array) {
   array.forEach((jobAd) => {
@@ -60,15 +63,30 @@ const renderCard = function (array) {
         `;
     cards.insertAdjacentHTML("beforeend", html);
   });
+
+  let tags = document.querySelectorAll(".tag");
+  tags.forEach((tag) => {
+    tag.addEventListener("click", function () {
+      tagsArray.push(tag.textContent);
+      let button = document.createElement("button");
+      button.classList.add("filter-button");
+      let span = document.createElement("span");
+      span.textContent = tag.textContent;
+      let img = document.createElement("img");
+      img.setAttribute("src", "images/icon-remove.svg");
+      img.setAttribute("alt", "remove icon");
+      button.appendChild(span);
+      button.appendChild(img);
+      filterOptions.appendChild(button);
+      filterContainer.style.display = "flex";
+    });
+    return tagsArray;
+  });
 };
 
-// fetch("./data.json")
-//   .then((response) => response.json())
-//   .then((data) => {
-//     data.forEach((item) => {
-//       renderCard(item);
-//     });
-//   });
+const renderFilterButton = function (tag) {};
+
+// Fetch Jobs
 
 let jobsArray = [];
 async function fetchJobs() {
@@ -79,8 +97,11 @@ async function fetchJobs() {
   renderCard(jobsArray);
 }
 
+// remove filter container when clear button clicks
+
 clearButton.addEventListener("click", function () {
   filterContainer.innerHTML = "";
+  filterContainer.style.display = "none";
   renderCard(jobsArray);
 });
 
