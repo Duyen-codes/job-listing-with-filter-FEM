@@ -72,6 +72,10 @@ const renderCard = function (array) {
 };
 
 const makeFilterButton = function (e) {
+  // Check if filter button of that tag is already available in filter options
+
+  if (filterOptions.innerText.includes(e.target.textContent)) return;
+
   let button = document.createElement("button");
   button.classList.add("filter-button");
   let span = document.createElement("span");
@@ -91,11 +95,17 @@ const makeFilterButton = function (e) {
   });
 };
 
+// remove filter option when remove icon clicks and remove all filter when last filter option removes.
+
 const removeFilterOption = function (e) {
   e.target.parentElement.remove();
-  if (filterOptions.lastChild == null) {
-    removeAllFilters();
-  }
+  //   if (filterOptions.lastChild == null) {
+  //     removeAllFilters();
+  //   }
+
+  filterOptions.hasChildNodes()
+    ? e.target.parentElement.remove()
+    : removeAllFilters();
 };
 
 // Fetch Jobs
