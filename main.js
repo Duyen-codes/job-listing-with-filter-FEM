@@ -51,11 +51,8 @@ const renderCard = function (array) {
         </div>
       
         <div class="tags item-end">
-        
           <button class="tag role">${jobAd.role}</button>
-       
           <button class="tag level">${jobAd.level}</button>
-         
           ${languages}
           ${tools}
         </div>
