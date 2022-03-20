@@ -8,7 +8,7 @@ const filterContainer = document.querySelector(".filter-container");
 const filterOptions = document.querySelector(".filter-options");
 
 let tagsArray = [];
-let filters = [];
+let filterTerms = new Set();
 
 // Render card
 const renderCard = function (array) {
@@ -68,8 +68,20 @@ const renderCard = function (array) {
   let tags = document.querySelectorAll(".tag");
   tags.forEach((tag) => {
     tag.addEventListener("click", makeFilterButton);
+    tag.addEventListener("click", tagOnclickHandler);
   });
 };
+
+const tagOnclickHandler = function (e) {
+  if (!filterTerms.has(e.target.textContent)) {
+    filterTerms.add(e.target.textContent);
+    console.log("tagOnclickHandler: ", filterTerms);
+  }
+  return filterTerms;
+};
+
+const filterJobs = (jobsArray, filterTerms) => {};
+// Make filter button
 
 const makeFilterButton = function (e) {
   // Check if filter button of that tag is already available in filter options
@@ -91,6 +103,7 @@ const makeFilterButton = function (e) {
 
   let removeIcons = document.querySelectorAll(".icon-remove");
   removeIcons.forEach((icon) => {
+    console.log("remove icon clicked");
     icon.addEventListener("click", removeFilterOption);
   });
 };
@@ -98,6 +111,7 @@ const makeFilterButton = function (e) {
 // remove filter option when remove icon clicks and remove all filter when last filter option removes.
 
 const removeFilterOption = function (e) {
+  filterTerms.delete(e.target.parentElement.textContent);
   e.target.parentElement.remove();
   //   if (filterOptions.lastChild == null) {
   //     removeAllFilters();
@@ -115,7 +129,6 @@ async function fetchJobs() {
   let response = await fetch("./data.json");
   let data = await response.json();
   jobsArray = data;
-  console.log("jobsArray: ", jobsArray);
   renderCard(jobsArray);
 }
 
