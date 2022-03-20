@@ -77,28 +77,27 @@ const makeFilterButton = function (e) {
   let span = document.createElement("span");
   span.textContent = e.target.textContent;
   let img = document.createElement("img");
+  img.className = "icon-remove";
   img.setAttribute("src", "images/icon-remove.svg");
   img.setAttribute("alt", "remove icon");
   button.appendChild(span);
   button.appendChild(img);
   filterOptions.appendChild(button);
   filterContainer.style.display = "flex";
+
+  let removeIcons = document.querySelectorAll(".icon-remove");
+  removeIcons.forEach((icon) => {
+    icon.addEventListener("click", removeFilterOption);
+  });
 };
 
-// function () {
-//     tagsArray.push(tag.textContent);
-//     let button = document.createElement("button");
-//     button.classList.add("filter-button");
-//     let span = document.createElement("span");
-//     span.textContent = tag.textContent;
-//     let img = document.createElement("img");
-//     img.setAttribute("src", "images/icon-remove.svg");
-//     img.setAttribute("alt", "remove icon");
-//     button.appendChild(span);
-//     button.appendChild(img);
-//     filterOptions.appendChild(button);
-//     filterContainer.style.display = "flex";
-//   }
+const removeFilterOption = function (e) {
+  e.target.parentElement.remove();
+  if (filterOptions.lastChild == null) {
+    removeAllFilters();
+  }
+};
+
 // Fetch Jobs
 
 let jobsArray = [];
@@ -122,5 +121,6 @@ clearButton.addEventListener("click", removeAllFilters);
 // Page first loads
 window.addEventListener("DOMContentLoaded", function () {
   fetchJobs();
+  filterOptions.innerHTML = "";
   filterContainer.style.display = "none";
 });
