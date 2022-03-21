@@ -1,10 +1,7 @@
 // Variables
 const cards = document.querySelector(".cards");
-
 const clearButton = document.querySelector(".clear-button");
-
 const filterContainer = document.querySelector(".filter-container");
-
 const filterOptions = document.querySelector(".filter-options");
 
 let tagsArray = [];
@@ -39,10 +36,8 @@ const renderCard = function (array) {
 
     let html = `
         <div class="card">
-                 
         <div class="item-start">
           <img class="logo" src="${jobAd.logo}" alt="" />
-      
           <div class="item-start-content">
             <span class="company">${jobAd.company}</span>
            ${newButton}
@@ -53,7 +48,6 @@ const renderCard = function (array) {
             <span class="location">${jobAd.location}</span>
           </div>
         </div>
-      
         <div class="tags item-end">
           <button class="tag role">${jobAd.role}</button>
           <button class="tag level">${jobAd.level}</button>
@@ -91,13 +85,13 @@ const filterJobs = (jobsArray, filterTerms) => {
     return true;
   });
 };
+
 // Make filter button
 
 const makeFilterButton = function (e) {
   // Check if filter button of that tag is already available in filter options
 
   if (filterOptions.innerText.includes(e.target.textContent)) return;
-
   let button = document.createElement("button");
   button.classList.add("filter-button");
   let span = document.createElement("span");
@@ -113,9 +107,11 @@ const makeFilterButton = function (e) {
 
   let removeIcons = document.querySelectorAll(".icon-remove");
   removeIcons.forEach((icon) => {
-    console.log("remove icon clicked");
     icon.addEventListener("click", removeFilterOption);
   });
+
+  jobsArray.forEach((job) => console.log(job));
+  console.log(filterTerms);
 };
 
 // remove filter option when remove icon clicks and remove all filter when last filter option removes.
